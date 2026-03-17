@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -40,7 +40,8 @@
       }
       body {
         font-family: "Inter", sans-serif;
-        background: radial-gradient(
+        background:
+          radial-gradient(
             circle at top left,
             rgba(155, 183, 212, 0.18),
             transparent 18%
@@ -128,7 +129,9 @@
         border-radius: 999px;
         color: var(--muted);
         font-size: 14px;
-        transition: background 0.25s ease, color 0.25s ease,
+        transition:
+          background 0.25s ease,
+          color 0.25s ease,
           transform 0.25s ease;
       }
 
@@ -200,7 +203,9 @@
         padding: 0 18px;
         border-radius: 999px;
         border: 1px solid rgba(17, 17, 17, 0.08);
-        transition: transform 0.25s ease, background 0.25s ease,
+        transition:
+          transform 0.25s ease,
+          background 0.25s ease,
           box-shadow 0.25s ease;
         cursor: pointer;
       }
@@ -234,6 +239,7 @@
         height: 100%;
         object-fit: cover;
         transition: transform 0.9s ease;
+        cursor: zoom-in;
       }
 
       .hero-card:hover .hero-visual img {
@@ -330,7 +336,9 @@
         background: #ecebe6;
         border: 1px solid rgba(17, 17, 17, 0.06);
         box-shadow: var(--shadow);
-        transition: transform 0.45s ease, box-shadow 0.45s ease,
+        transition:
+          transform 0.45s ease,
+          box-shadow 0.45s ease,
           border-color 0.35s ease;
       }
 
@@ -346,7 +354,10 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.8s ease, filter 0.8s ease;
+        transition:
+          transform 0.8s ease,
+          filter 0.8s ease;
+        cursor: pointer;
       }
 
       .overview-card:hover .overview-image {
@@ -432,7 +443,9 @@
         border: 1px solid rgba(17, 17, 17, 0.08);
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
         cursor: pointer;
-        transition: transform 0.25s ease, background 0.25s ease;
+        transition:
+          transform 0.25s ease,
+          background 0.25s ease;
       }
 
       .control-btn:hover {
@@ -608,7 +621,10 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.7s ease, opacity 0.4s ease;
+        transition:
+          transform 0.7s ease,
+          opacity 0.4s ease;
+        cursor: zoom-in;
       }
 
       .feature-frame:hover .feature-image {
@@ -677,7 +693,9 @@
         border: 1px solid rgba(17, 17, 17, 0.06);
         cursor: pointer;
         scroll-snap-align: center;
-        transition: transform 0.3s ease, border-color 0.3s ease,
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
           box-shadow 0.3s ease;
       }
 
@@ -696,7 +714,9 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease, filter 0.5s ease;
+        transition:
+          transform 0.5s ease,
+          filter 0.5s ease;
       }
 
       .thumb:hover img {
@@ -708,6 +728,8 @@
         background: linear-gradient(180deg, #f8f8f5, #e7e3da);
         padding: 14px;
         filter: grayscale(1) contrast(1.1);
+        width: 100%;
+        height: 100%;
       }
 
       .thumb-label {
@@ -776,12 +798,83 @@
       .reveal {
         opacity: 0;
         transform: translateY(26px);
-        transition: opacity 0.9s ease, transform 0.9s ease;
+        transition:
+          opacity 0.9s ease,
+          transform 0.9s ease;
       }
 
       .reveal.visible {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(248, 248, 244, 0.92);
+        backdrop-filter: blur(14px);
+        z-index: 120;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+      }
+
+      .lightbox.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .lightbox-inner {
+        position: relative;
+        width: min(1280px, 100%);
+        max-height: 100%;
+        display: grid;
+        gap: 14px;
+        justify-items: center;
+      }
+
+      .lightbox img {
+        width: auto;
+        max-width: 100%;
+        max-height: min(78vh, 980px);
+        object-fit: contain;
+        border-radius: 24px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.14);
+        background: white;
+      }
+
+      .lightbox-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .lightbox-caption {
+        max-width: 60ch;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(17, 17, 17, 0.08);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        font-size: 20px;
       }
 
       @media (max-width: 1180px) {
@@ -839,6 +932,10 @@
         .control-btn.mobile-hide {
           display: none;
         }
+        .lightbox-meta {
+          flex-direction: column;
+          align-items: start;
+        }
       }
     </style>
   </head>
@@ -847,7 +944,7 @@
       <div class="shell nav">
         <a href="#top" class="brand">
           <span class="brand-mark"></span>
-          <span>Atelier Chaima Benkheil</span>
+          <span>Atelier Noura</span>
         </a>
         <nav class="nav-links">
           <a href="#overview">Overview</a>
@@ -912,29 +1009,6 @@
 
         <div class="overview-wrap reveal">
           <div class="overview-track" id="overviewTrack">
-            <a class="overview-card" href="#project-1">
-              <img
-                class="overview-image"
-                src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
-                alt="Maison de Lumière"
-              />
-              <div class="overview-top">
-                <div class="overview-index">01</div>
-                <div class="overview-tag">Residential</div>
-              </div>
-              <div class="overview-bottom">
-                <h3 class="overview-title">Maison de Lumière</h3>
-                <p class="overview-desc">
-                  Townhouse renovation with sculpted daylight, a quieter
-                  palette, and stronger garden continuity.
-                </p>
-                <div class="overview-meta">
-                  <span>Ghent</span>
-                  <span>2025</span>
-                  <span>Plans + photos + process</span>
-                </div>
-              </div>
-            </a>
             <a class="overview-card" href="#project-1">
               <img
                 class="overview-image"
@@ -1773,6 +1847,23 @@
         </div>
       </section>
 
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-inner">
+          <button
+            class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Close image"
+          >
+            ×
+          </button>
+          <img id="lightboxImage" src="" alt="Expanded project image" />
+          <div class="lightbox-meta">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <div id="lightboxCounter"></div>
+          </div>
+        </div>
+      </div>
+
       <footer class="footer shell" id="contact">
         <div class="footer-panel reveal">
           <div>
@@ -1797,13 +1888,13 @@
             if (entry.isIntersecting) entry.target.classList.add("visible");
           });
         },
-        { threshold: 0.14 }
+        { threshold: 0.14 },
       );
       revealItems.forEach((item) => revealObserver.observe(item));
 
       const navLinks = document.querySelectorAll(".nav-links a");
       const sections = Array.from(
-        document.querySelectorAll("#overview, #project-1, #studio, #contact")
+        document.querySelectorAll("#overview, #project-1, #studio, #contact"),
       );
       const navObserver = new IntersectionObserver(
         (entries) => {
@@ -1812,21 +1903,39 @@
               navLinks.forEach((link) =>
                 link.classList.toggle(
                   "active",
-                  link.getAttribute("href") === "#" + entry.target.id
-                )
+                  link.getAttribute("href") === "#" + entry.target.id,
+                ),
               );
             }
           });
         },
-        { threshold: 0.35 }
+        { threshold: 0.35 },
       );
       sections.forEach((section) => navObserver.observe(section));
 
+      const headerOffset = 92;
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          const href = anchor.getAttribute("href");
+          if (!href || href === "#") return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          const top =
+            target.getBoundingClientRect().top +
+            window.pageYOffset -
+            headerOffset;
+          window.scrollTo({ top, behavior: "smooth" });
+        });
+      });
+
       const overviewTrack = document.getElementById("overviewTrack");
       const overviewProgress = document.getElementById("overviewProgress");
+
       document.getElementById("overviewPrev").addEventListener("click", () => {
         overviewTrack.scrollBy({ left: -420, behavior: "smooth" });
       });
+
       document.getElementById("overviewNext").addEventListener("click", () => {
         overviewTrack.scrollBy({ left: 420, behavior: "smooth" });
       });
@@ -1836,26 +1945,117 @@
         const ratio = max <= 0 ? 1 : overviewTrack.scrollLeft / max;
         overviewProgress.style.width = `${25 + ratio * 75}%`;
       }
+
       overviewTrack.addEventListener("scroll", updateOverviewProgress, {
         passive: true,
       });
       window.addEventListener("load", updateOverviewProgress);
       window.addEventListener("resize", updateOverviewProgress);
 
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightboxImage");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+      const lightboxCounter = document.getElementById("lightboxCounter");
+      const lightboxClose = document.getElementById("lightboxClose");
+
+      let activeGalleryItems = [];
+      let activeLightboxIndex = 0;
+
+      function openLightbox(items, index) {
+        activeGalleryItems = items;
+        activeLightboxIndex = index;
+        const item = items[index];
+        lightboxImage.src = item.src;
+        lightboxCaption.textContent = item.caption || "";
+        lightboxCounter.textContent = `${String(index + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function stepLightbox(direction) {
+        if (!activeGalleryItems.length) return;
+        activeLightboxIndex =
+          (activeLightboxIndex + direction + activeGalleryItems.length) %
+          activeGalleryItems.length;
+        const item = activeGalleryItems[activeLightboxIndex];
+
+        lightboxImage.animate(
+          [
+            { opacity: 0.2, transform: "scale(0.985)" },
+            { opacity: 1, transform: "scale(1)" },
+          ],
+          { duration: 220, easing: "ease-out" },
+        );
+
+        lightboxImage.src = item.src;
+        lightboxCaption.textContent = item.caption || "";
+        lightboxCounter.textContent = `${String(activeLightboxIndex + 1).padStart(2, "0")} / ${String(activeGalleryItems.length).padStart(2, "0")}`;
+      }
+
+      lightboxClose.addEventListener("click", closeLightbox);
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("active")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") stepLightbox(1);
+        if (e.key === "ArrowLeft") stepLightbox(-1);
+      });
+
+      document
+        .querySelector(".hero-visual img")
+        ?.addEventListener("click", (e) => {
+          openLightbox(
+            [
+              {
+                src: e.currentTarget.src,
+                caption: "Featured project preview.",
+              },
+            ],
+            0,
+          );
+        });
+
+      document.querySelectorAll(".overview-card").forEach((card) => {
+        const image = card.querySelector(".overview-image");
+        const captionText =
+          card.querySelector(".overview-desc")?.textContent || "";
+        image?.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openLightbox([{ src: image.src, caption: captionText }], 0);
+        });
+      });
+
       document.querySelectorAll("[data-project]").forEach((project) => {
         const featureImage = project.querySelector(".feature-image");
         const caption = project.querySelector(".feature-caption");
         const counter = project.querySelector(".feature-counter");
         const thumbs = Array.from(project.querySelectorAll(".thumb"));
-        const row = project.querySelector(".thumb-row");
         const progress = project.querySelector(".thumb-progress-bar");
         const prev = project.querySelector(".prev");
         const next = project.querySelector(".next");
+        const items = thumbs.map((thumb) => ({
+          src: thumb.dataset.src,
+          caption: thumb.dataset.caption || "",
+        }));
+
         let activeIndex = 0;
 
         function activate(index) {
           activeIndex = index;
           const thumb = thumbs[index];
+
           thumbs.forEach((t, i) => t.classList.toggle("active", i === index));
 
           featureImage.animate(
@@ -1863,7 +2063,7 @@
               { opacity: 0.3, transform: "scale(1.025)" },
               { opacity: 1, transform: "scale(1)" },
             ],
-            { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" }
+            { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" },
           );
 
           caption.animate(
@@ -1871,7 +2071,7 @@
               { opacity: 0, transform: "translateY(10px)" },
               { opacity: 1, transform: "translateY(0)" },
             ],
-            { duration: 380, easing: "ease-out" }
+            { duration: 380, easing: "ease-out" },
           );
 
           counter.animate(
@@ -1879,15 +2079,13 @@
               { opacity: 0, transform: "translateY(8px)" },
               { opacity: 1, transform: "translateY(0)" },
             ],
-            { duration: 340, easing: "ease-out" }
+            { duration: 340, easing: "ease-out" },
           );
 
           featureImage.src = thumb.dataset.src;
+          featureImage.alt = thumb.querySelector("img")?.alt || "Project media";
           caption.textContent = thumb.dataset.caption;
-          counter.textContent = `${String(index + 1).padStart(
-            2,
-            "0"
-          )} / ${String(thumbs.length).padStart(2, "0")}`;
+          counter.textContent = `${String(index + 1).padStart(2, "0")} / ${String(thumbs.length).padStart(2, "0")}`;
           progress.style.width = `${((index + 1) / thumbs.length) * 100}%`;
           thumb.scrollIntoView({
             behavior: "smooth",
@@ -1898,13 +2096,20 @@
 
         thumbs.forEach((thumb, index) => {
           thumb.addEventListener("click", () => activate(index));
+          thumb.addEventListener("dblclick", (e) => {
+            e.preventDefault();
+            openLightbox(items, index);
+          });
         });
 
+        featureImage.addEventListener("click", () =>
+          openLightbox(items, activeIndex),
+        );
         prev?.addEventListener("click", () =>
-          activate((activeIndex - 1 + thumbs.length) % thumbs.length)
+          activate((activeIndex - 1 + thumbs.length) % thumbs.length),
         );
         next?.addEventListener("click", () =>
-          activate((activeIndex + 1) % thumbs.length)
+          activate((activeIndex + 1) % thumbs.length),
         );
 
         activate(0);
