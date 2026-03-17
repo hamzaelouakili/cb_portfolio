@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Architect Portfolio — Apple-like One Page POC</title>
+    <title>Atelier Chaima</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -381,26 +381,37 @@
       .overview-bottom {
         position: relative;
         z-index: 1;
+        margin-top: auto;
       }
 
       .overview-top {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        right: 24px;
+        z-index: 2;
         display: flex;
         justify-content: space-between;
-        align-items: start;
+        align-items: center;
         gap: 16px;
       }
 
       .overview-index,
       .overview-tag {
-        padding: 10px 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 10px 14px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.78);
+        background: rgba(255, 255, 255, 0.82);
         border: 1px solid rgba(17, 17, 17, 0.08);
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 0.12em;
         color: #52606f;
         backdrop-filter: blur(10px);
+        white-space: nowrap;
       }
 
       .overview-title {
@@ -914,7 +925,7 @@
           grid-auto-columns: 86%;
         }
         .overview-card {
-          min-height: 520px;
+          isolation: isolate;
         }
         .hero-visual,
         .feature-frame {
@@ -944,7 +955,7 @@
       <div class="shell nav">
         <a href="#top" class="brand">
           <span class="brand-mark"></span>
-          <span>Atelier Noura</span>
+          <span>Atelier Chaima</span>
         </a>
         <nav class="nav-links">
           <a href="#overview">Overview</a>
