@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Architect Portfolio — Apple-like One Page POC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f7f2;
+        --bg-soft: #ffffff;
+        --panel: rgba(255, 255, 255, 0.82);
+        --line: rgba(17, 17, 17, 0.12);
+        --line-strong: rgba(17, 17, 17, 0.2);
+        --text: #0f1115;
+        --muted: rgba(15, 17, 21, 0.64);
+        --accent: #9bb7d4;
+        --accent-2: #d7c3a7;
+        --accent-3: #dce8d8;
+        --radius-xl: 34px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        --max: 1460px;
+        --nav-h: 76px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: radial-gradient(
+            circle at top left,
+            rgba(155, 183, 212, 0.18),
+            transparent 18%
+          ),
+          radial-gradient(
+            circle at 80% 18%,
+            rgba(215, 195, 167, 0.14),
+            transparent 18%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(220, 232, 216, 0.28),
+            transparent 22%
+          ),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.45;
+        overflow-x: hidden;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+        border: 0;
+        background: none;
+        color: inherit;
+      }
+
+      .shell {
+        width: min(calc(100% - 40px), var(--max));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        backdrop-filter: blur(18px);
+        background: rgba(247, 247, 242, 0.75);
+        border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+      }
+
+      .nav {
+        min-height: var(--nav-h);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .brand-mark {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 0 8px rgba(155, 183, 212, 0.12);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .nav-links a {
+        padding: 10px 14px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 14px;
+        transition: background 0.25s ease, color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        background: rgba(17, 17, 17, 0.06);
+        color: var(--text);
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        padding: 42px 0 34px;
+      }
+
+      .hero-card {
+        position: relative;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(17, 17, 17, 0.06);
+        border-radius: 42px;
+        box-shadow: var(--shadow);
+        padding: 30px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 12px;
+        color: #60758f;
+        margin-bottom: 16px;
+        font-weight: 700;
+      }
+
+      .hero h1 {
+        font-size: clamp(46px, 8vw, 110px);
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        font-weight: 700;
+        max-width: 9ch;
+      }
+
+      .hero-copy {
+        color: var(--muted);
+        font-size: 17px;
+        max-width: 42ch;
+        margin-top: 20px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 46px;
+        padding: 0 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 17, 17, 0.08);
+        transition: transform 0.25s ease, background 0.25s ease,
+          box-shadow 0.25s ease;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--text);
+        color: white;
+        box-shadow: 0 10px 24px rgba(15, 17, 21, 0.14);
+      }
+
+      .btn-secondary {
+        background: rgba(17, 17, 17, 0.04);
+        color: var(--text);
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 620px;
+        overflow: hidden;
+        border-radius: 34px;
+        background: #ecebe6;
+        border: 1px solid rgba(17, 17, 17, 0.06);
+      }
+
+      .hero-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.9s ease;
+      }
+
+      .hero-card:hover .hero-visual img {
+        transform: scale(1.03);
+      }
+
+      .hero-float {
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+        padding: 16px 18px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.74);
+        border: 1px solid rgba(17, 17, 17, 0.08);
+        backdrop-filter: blur(16px);
+        max-width: 280px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-float-title {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+
+      .hero-float strong {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 6px;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-float p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: end;
+        margin: 78px 0 26px;
+        scroll-margin-top: calc(var(--nav-h) + 14px);
+      }
+
+      .section-head h2 {
+        font-size: clamp(30px, 4vw, 52px);
+        line-height: 0.96;
+        letter-spacing: -0.05em;
+        max-width: 12ch;
+      }
+
+      .section-head p {
+        max-width: 56ch;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .overview-wrap {
+        position: relative;
+        padding-bottom: 8px;
+      }
+
+      .overview-track {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(320px, 38%);
+        gap: 18px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+      }
+
+      .overview-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .overview-card {
+        position: relative;
+        display: grid;
+        gap: 16px;
+        align-content: end;
+        min-height: 620px;
+        padding: 24px;
+        border-radius: 32px;
+        overflow: hidden;
+        scroll-snap-align: center;
+        cursor: pointer;
+        background: #ecebe6;
+        border: 1px solid rgba(17, 17, 17, 0.06);
+        box-shadow: var(--shadow);
+        transition: transform 0.45s ease, box-shadow 0.45s ease,
+          border-color 0.35s ease;
+      }
+
+      .overview-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.11);
+        border-color: rgba(17, 17, 17, 0.12);
+      }
+
+      .overview-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease, filter 0.8s ease;
+      }
+
+      .overview-card:hover .overview-image {
+        transform: scale(1.04);
+        filter: saturate(1.02);
+      }
+
+      .overview-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0.92),
+          rgba(255, 255, 255, 0.18) 42%,
+          rgba(255, 255, 255, 0.04)
+        );
+      }
+
+      .overview-top,
+      .overview-bottom {
+        position: relative;
+        z-index: 1;
+      }
+
+      .overview-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 16px;
+      }
+
+      .overview-index,
+      .overview-tag {
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(17, 17, 17, 0.08);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #52606f;
+        backdrop-filter: blur(10px);
+      }
+
+      .overview-title {
+        font-size: clamp(28px, 4vw, 48px);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        max-width: 8ch;
+        margin-bottom: 10px;
+      }
+
+      .overview-desc {
+        max-width: 36ch;
+        color: rgba(15, 17, 21, 0.72);
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      .overview-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: rgba(15, 17, 21, 0.72);
+        font-size: 13px;
+      }
+
+      .overview-controls,
+      .media-controls {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .control-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 17, 17, 0.08);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        cursor: pointer;
+        transition: transform 0.25s ease, background 0.25s ease;
+      }
+
+      .control-btn:hover {
+        transform: translateY(-1px);
+        background: white;
+      }
+
+      .progress-rail {
+        margin-top: 18px;
+        height: 4px;
+        background: rgba(17, 17, 17, 0.08);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 25%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        border-radius: 999px;
+        transition: width 0.35s ease;
+      }
+
+      .project-section {
+        display: grid;
+        grid-template-columns: 0.86fr 1.14fr;
+        gap: 22px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(17, 17, 17, 0.06);
+        border-radius: 34px;
+        box-shadow: var(--shadow);
+        margin-bottom: 26px;
+        scroll-margin-top: calc(var(--nav-h) + 16px);
+      }
+
+      .project-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        min-width: 0;
+        padding: 8px;
+      }
+
+      .project-kicker {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .project-index {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #60758f;
+        font-weight: 700;
+      }
+
+      .project-chip {
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(155, 183, 212, 0.12);
+        color: #52606f;
+        border: 1px solid rgba(17, 17, 17, 0.08);
+        font-size: 12px;
+      }
+
+      .project-title {
+        font-size: clamp(32px, 5vw, 62px);
+        letter-spacing: -0.06em;
+        line-height: 0.92;
+        max-width: 10ch;
+      }
+
+      .project-desc {
+        max-width: 46ch;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .fact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .fact-card,
+      .detail-card {
+        background: rgba(17, 17, 17, 0.025);
+        border: 1px solid rgba(17, 17, 17, 0.06);
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .fact-card span,
+      .detail-card h4 {
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: #60758f;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .fact-card strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .process-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .process-step {
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 14px;
+        padding: 14px 0;
+        border-top: 1px solid rgba(17, 17, 17, 0.08);
+      }
+
+      .step-num {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(215, 195, 167, 0.22);
+        color: #7b6b54;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .process-step strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 15px;
+      }
+
+      .process-step p,
+      .detail-card p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .project-media {
+        min-width: 0;
+        display: grid;
+        gap: 14px;
+      }
+
+      .feature-frame {
+        position: relative;
+        min-height: 620px;
+        border-radius: 28px;
+        overflow: hidden;
+        background: #ecebe6;
+        border: 1px solid rgba(17, 17, 17, 0.06);
+      }
+
+      .feature-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease, opacity 0.4s ease;
+      }
+
+      .feature-frame:hover .feature-image {
+        transform: scale(1.02);
+      }
+
+      .feature-overlay {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 22px;
+        background: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0.94),
+          rgba(255, 255, 255, 0.18)
+        );
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 18px;
+      }
+
+      .feature-caption {
+        font-size: 14px;
+        color: rgba(15, 17, 21, 0.72);
+        max-width: 42ch;
+      }
+
+      .feature-counter {
+        font-size: 12px;
+        color: #60758f;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        white-space: nowrap;
+      }
+
+      .media-nav {
+        position: relative;
+        padding: 14px 54px;
+        border-radius: 24px;
+        background: rgba(17, 17, 17, 0.025);
+        border: 1px solid rgba(17, 17, 17, 0.06);
+        overflow: hidden;
+      }
+
+      .thumb-row {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(180px, 24%);
+        gap: 12px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+      }
+
+      .thumb-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .thumb {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        aspect-ratio: 1.15 / 1;
+        background: #ecebe6;
+        border: 1px solid rgba(17, 17, 17, 0.06);
+        cursor: pointer;
+        scroll-snap-align: center;
+        transition: transform 0.3s ease, border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .thumb:hover {
+        transform: translateY(-3px);
+        border-color: rgba(17, 17, 17, 0.14);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.06);
+      }
+
+      .thumb.active {
+        border-color: rgba(155, 183, 212, 0.9);
+        box-shadow: 0 0 0 3px rgba(155, 183, 212, 0.12);
+      }
+
+      .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease, filter 0.5s ease;
+      }
+
+      .thumb:hover img {
+        transform: scale(1.05);
+      }
+
+      .thumb.plan img {
+        object-fit: contain;
+        background: linear-gradient(180deg, #f8f8f5, #e7e3da);
+        padding: 14px;
+        filter: grayscale(1) contrast(1.1);
+      }
+
+      .thumb-label {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        padding: 6px 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 17, 17, 0.06);
+        color: #52606f;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .thumb-progress {
+        margin-top: 12px;
+        height: 3px;
+        background: rgba(17, 17, 17, 0.08);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .thumb-progress-bar {
+        height: 100%;
+        width: 25%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        transition: width 0.3s ease;
+      }
+
+      .footer {
+        padding: 66px 0 110px;
+      }
+
+      .footer-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 28px;
+        border-radius: 34px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(17, 17, 17, 0.06);
+        box-shadow: var(--shadow);
+      }
+
+      .footer h3 {
+        font-size: clamp(28px, 4vw, 56px);
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+        max-width: 11ch;
+      }
+
+      .footer p,
+      .footer li {
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .footer ul {
+        display: grid;
+        gap: 10px;
+        list-style: none;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.9s ease, transform 0.9s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1180px) {
+        .hero-grid,
+        .project-section,
+        .footer-panel {
+          grid-template-columns: 1fr;
+        }
+        .overview-track {
+          grid-auto-columns: minmax(320px, 62%);
+        }
+        .hero-visual,
+        .feature-frame {
+          min-height: 460px;
+        }
+        .thumb-row {
+          grid-auto-columns: minmax(180px, 32%);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .nav-links {
+          display: none;
+        }
+        .hero-card,
+        .project-section,
+        .footer-panel {
+          padding: 18px;
+          border-radius: 24px;
+        }
+        .section-head,
+        .fact-grid,
+        .detail-grid {
+          grid-template-columns: 1fr;
+        }
+        .overview-track {
+          grid-auto-columns: 86%;
+        }
+        .overview-card {
+          min-height: 520px;
+        }
+        .hero-visual,
+        .feature-frame {
+          min-height: 340px;
+        }
+        .media-nav {
+          padding-inline: 14px;
+        }
+        .thumb-row {
+          grid-auto-columns: 62%;
+        }
+        .project-title {
+          max-width: none;
+        }
+        .control-btn.mobile-hide {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell nav">
+        <a href="#top" class="brand">
+          <span class="brand-mark"></span>
+          <span>Atelier Chaima Benkheil</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#project-1">Projects</a>
+          <a href="#studio">Studio</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <div class="hero-card reveal visible">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">Architecture / Interiors / Renovation</div>
+              <h1>Quiet form. Clear experience.</h1>
+              <p class="hero-copy">
+                A one-page architect portfolio concept with an Apple-like
+                navigation flow: bird’s-eye overview first, then deeper project
+                storytelling on the same page with plans, process, photography,
+                and clear calls to explore.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#overview">Explore projects</a>
+                <a class="btn btn-secondary" href="#project-1"
+                  >Jump to first case study</a
+                >
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <img
+                src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80"
+                alt="Architecture hero image"
+              />
+              <div class="hero-float">
+                <div class="hero-float-title">Featured project</div>
+                <strong>Maison de Lumière</strong>
+                <p>
+                  Residential transformation centered on daylight, calm
+                  materiality, and spatial continuity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell" id="overview">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Overview</div>
+            <h2>One-shot bird’s-eye view of the whole portfolio.</h2>
+          </div>
+          <p>
+            This section acts like a premium project browser: fast to scan,
+            fully clickable, and visually rich. Each card is a gateway into the
+            deeper project section further down the same page.
+          </p>
+        </div>
+
+        <div class="overview-wrap reveal">
+          <div class="overview-track" id="overviewTrack">
+            <a class="overview-card" href="#project-1">
+              <img
+                class="overview-image"
+                src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+                alt="Maison de Lumière"
+              />
+              <div class="overview-top">
+                <div class="overview-index">01</div>
+                <div class="overview-tag">Residential</div>
+              </div>
+              <div class="overview-bottom">
+                <h3 class="overview-title">Maison de Lumière</h3>
+                <p class="overview-desc">
+                  Townhouse renovation with sculpted daylight, a quieter
+                  palette, and stronger garden continuity.
+                </p>
+                <div class="overview-meta">
+                  <span>Ghent</span>
+                  <span>2025</span>
+                  <span>Plans + photos + process</span>
+                </div>
+              </div>
+            </a>
+            <a class="overview-card" href="#project-1">
+              <img
+                class="overview-image"
+                src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+                alt="Maison de Lumière"
+              />
+              <div class="overview-top">
+                <div class="overview-index">01</div>
+                <div class="overview-tag">Residential</div>
+              </div>
+              <div class="overview-bottom">
+                <h3 class="overview-title">Maison de Lumière</h3>
+                <p class="overview-desc">
+                  Townhouse renovation with sculpted daylight, a quieter
+                  palette, and stronger garden continuity.
+                </p>
+                <div class="overview-meta">
+                  <span>Ghent</span>
+                  <span>2025</span>
+                  <span>Plans + photos + process</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="overview-card" href="#project-2">
+              <img
+                class="overview-image"
+                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80"
+                alt="Atelier Courtyard"
+              />
+              <div class="overview-top">
+                <div class="overview-index">02</div>
+                <div class="overview-tag">Mixed use</div>
+              </div>
+              <div class="overview-bottom">
+                <h3 class="overview-title">Atelier Courtyard</h3>
+                <p class="overview-desc">
+                  Adaptive reuse project balancing industrial mass with a calm
+                  internal courtyard sequence.
+                </p>
+                <div class="overview-meta">
+                  <span>Antwerp</span>
+                  <span>In progress</span>
+                  <span>Diagrams + gallery + plans</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="overview-card" href="#project-3">
+              <img
+                class="overview-image"
+                src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80"
+                alt="Cliff House"
+              />
+              <div class="overview-top">
+                <div class="overview-index">03</div>
+                <div class="overview-tag">Coastal home</div>
+              </div>
+              <div class="overview-bottom">
+                <h3 class="overview-title">Cliff House</h3>
+                <p class="overview-desc">
+                  A layered coastal retreat shaped around horizon views,
+                  protection, and minimal detailing.
+                </p>
+                <div class="overview-meta">
+                  <span>Knokke</span>
+                  <span>Concept</span>
+                  <span>Sections + renders + materials</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="overview-card" href="#project-4">
+              <img
+                class="overview-image"
+                src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80"
+                alt="Gallery House"
+              />
+              <div class="overview-top">
+                <div class="overview-index">04</div>
+                <div class="overview-tag">Interiors</div>
+              </div>
+              <div class="overview-bottom">
+                <h3 class="overview-title">Gallery House</h3>
+                <p class="overview-desc">
+                  Interior architecture focused on procession, display,
+                  tactility, and gallery-grade restraint.
+                </p>
+                <div class="overview-meta">
+                  <span>Brussels</span>
+                  <span>Completed</span>
+                  <span>Photos + joinery + layout</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="overview-controls">
+            <button
+              class="control-btn"
+              id="overviewPrev"
+              aria-label="Previous projects"
+            >
+              ‹
+            </button>
+            <button
+              class="control-btn"
+              id="overviewNext"
+              aria-label="Next projects"
+            >
+              ›
+            </button>
+          </div>
+          <div class="progress-rail">
+            <div class="progress-bar" id="overviewProgress"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell" id="project-1">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Case study 01</div>
+            <h2>Deeper narrative, still on one page.</h2>
+          </div>
+          <p>
+            The page stays easy to navigate by keeping all projects in one
+            scroll. Each project section is fully clickable through its media
+            system and readable as a compact case study.
+          </p>
+        </div>
+
+        <article class="project-section reveal">
+          <div class="project-panel">
+            <div class="project-kicker">
+              <div class="project-index">Project 01</div>
+              <div class="project-chip">Residential / 460 m²</div>
+            </div>
+            <h3 class="project-title">Maison de Lumière</h3>
+            <p class="project-desc">
+              A townhouse renovation organized around daylight, slower
+              circulation, and material continuity. The intervention opens the
+              rear façade, reshapes the stair as a spatial anchor, and creates a
+              calmer threshold between street-facing rooms and the garden
+              sequence.
+            </p>
+
+            <div class="fact-grid">
+              <div class="fact-card">
+                <span>Location</span><strong>Ghent, Belgium</strong>
+              </div>
+              <div class="fact-card">
+                <span>Status</span><strong>Completed in 2025</strong>
+              </div>
+              <div class="fact-card">
+                <span>Materiality</span
+                ><strong>Oak, lime plaster, stone</strong>
+              </div>
+            </div>
+
+            <div class="process-list">
+              <div class="process-step">
+                <div class="step-num">01</div>
+                <div>
+                  <strong>Concept framing</strong>
+                  <p>
+                    Redefined the plan around light penetration, a stronger rear
+                    connection, and a more legible circulation spine.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-num">02</div>
+                <div>
+                  <strong>Plan & section studies</strong>
+                  <p>
+                    Tested openings, privacy gradients, and stair geometry
+                    through iterative plan and sectional analysis.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-num">03</div>
+                <div>
+                  <strong>Technical development</strong>
+                  <p>
+                    Resolved joinery, structure, and finish transitions into a
+                    warm but highly controlled architectural language.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-card">
+                <h4>Description</h4>
+                <p>
+                  The project prioritizes atmosphere without decorative excess.
+                  The result feels warm, quiet, and precise.
+                </p>
+              </div>
+              <div class="detail-card">
+                <h4>Plans</h4>
+                <p>
+                  The media carousel includes a ground-floor plan, circulation
+                  diagram, interior photographs, and detail studies.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-media" data-project>
+            <div class="feature-frame">
+              <img
+                class="feature-image"
+                src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+                alt="Maison de Lumière feature"
+              />
+              <div class="feature-overlay">
+                <div class="feature-caption">
+                  Living volume with sculpted daylight and a restrained material
+                  palette.
+                </div>
+                <div class="feature-counter">01 / 05</div>
+              </div>
+            </div>
+
+            <div class="media-nav">
+              <div class="media-controls">
+                <button
+                  class="control-btn mobile-hide prev"
+                  aria-label="Previous media"
+                >
+                  ‹
+                </button>
+                <button
+                  class="control-btn mobile-hide next"
+                  aria-label="Next media"
+                >
+                  ›
+                </button>
+              </div>
+              <div class="thumb-row">
+                <button
+                  class="thumb active"
+                  data-src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Living volume with sculpted daylight and a restrained material palette."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80"
+                    alt="Interior"
+                  />
+                  <span class="thumb-label">Photo</span>
+                </button>
+                <button
+                  class="thumb"
+                  data-src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Rear extension opening toward the garden with full-height glazing."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80"
+                    alt="Exterior"
+                  />
+                  <span class="thumb-label">Exterior</span>
+                </button>
+                <button
+                  class="thumb plan"
+                  data-src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1400&q=80"
+                  data-caption="Ground floor plan and circulation strategy diagram."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80"
+                    alt="Plan"
+                  />
+                  <span class="thumb-label">Plan</span>
+                </button>
+                <button
+                  class="thumb"
+                  data-src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Material palette emphasizing oak, lime plaster, and shadow depth."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80"
+                    alt="Detail"
+                  />
+                  <span class="thumb-label">Detail</span>
+                </button>
+                <button
+                  class="thumb plan"
+                  data-src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1400&q=80"
+                  data-caption="Sectional study illustrating stair insertion and vertical light flow."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&q=80"
+                    alt="Section"
+                  />
+                  <span class="thumb-label">Section</span>
+                </button>
+              </div>
+              <div class="thumb-progress">
+                <div class="thumb-progress-bar"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-section reveal" id="project-2">
+          <div class="project-panel">
+            <div class="project-kicker">
+              <div class="project-index">Project 02</div>
+              <div class="project-chip">Mixed use / 820 m²</div>
+            </div>
+            <h3 class="project-title">Atelier Courtyard</h3>
+            <p class="project-desc">
+              A former industrial structure transformed into a studio-residence
+              hybrid. Instead of filling the shell, the design removes mass to
+              insert a courtyard that organizes circulation, light, and a sense
+              of calm across studio, exhibition, and domestic functions.
+            </p>
+
+            <div class="fact-grid">
+              <div class="fact-card">
+                <span>Location</span><strong>Antwerp, Belgium</strong>
+              </div>
+              <div class="fact-card">
+                <span>Status</span><strong>In progress</strong>
+              </div>
+              <div class="fact-card">
+                <span>Program</span><strong>Studio, gallery, residence</strong>
+              </div>
+            </div>
+
+            <div class="process-list">
+              <div class="process-step">
+                <div class="step-num">01</div>
+                <div>
+                  <strong>Site reading</strong>
+                  <p>
+                    Mapped inherited structure, service zones, and opportunities
+                    for adaptive reuse without losing character.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-num">02</div>
+                <div>
+                  <strong>Courtyard insertion</strong>
+                  <p>
+                    Used subtraction to generate daylight, orientation, and a
+                    more legible internal sequence.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-num">03</div>
+                <div>
+                  <strong>Atmosphere calibration</strong>
+                  <p>
+                    Balanced retained industrial texture with quieter domestic
+                    surfaces and gallery-grade lighting.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-card">
+                <h4>Description</h4>
+                <p>
+                  The project is driven by contrast: robust inherited mass
+                  outside, carefully calibrated calm inside.
+                </p>
+              </div>
+              <div class="detail-card">
+                <h4>Plans</h4>
+                <p>
+                  The media system combines diagrams, plans, interior
+                  references, and hero views in a single narrative rail.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-media" data-project>
+            <div class="feature-frame">
+              <img
+                class="feature-image"
+                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80"
+                alt="Atelier Courtyard feature"
+              />
+              <div class="feature-overlay">
+                <div class="feature-caption">
+                  Adaptive reuse concept balancing industrial shell and a calm
+                  courtyard sequence.
+                </div>
+                <div class="feature-counter">01 / 05</div>
+              </div>
+            </div>
+
+            <div class="media-nav">
+              <div class="media-controls">
+                <button
+                  class="control-btn mobile-hide prev"
+                  aria-label="Previous media"
+                >
+                  ‹
+                </button>
+                <button
+                  class="control-btn mobile-hide next"
+                  aria-label="Next media"
+                >
+                  ›
+                </button>
+              </div>
+              <div class="thumb-row">
+                <button
+                  class="thumb active"
+                  data-src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Adaptive reuse concept balancing industrial shell and a calm courtyard sequence."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80"
+                    alt="Hero"
+                  />
+                  <span class="thumb-label">Hero</span>
+                </button>
+                <button
+                  class="thumb"
+                  data-src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Interior sequence organized around planted light and soft reflections."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80"
+                    alt="Interior"
+                  />
+                  <span class="thumb-label">Interior</span>
+                </button>
+                <button
+                  class="thumb plan"
+                  data-src="https://images.unsplash.com/photo-1431578500526-4d9613015464?auto=format&fit=crop&w=1400&q=80"
+                  data-caption="Courtyard insertion diagram clarifying mass removal and circulation."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1431578500526-4d9613015464?auto=format&fit=crop&w=900&q=80"
+                    alt="Diagram"
+                  />
+                  <span class="thumb-label">Diagram</span>
+                </button>
+                <button
+                  class="thumb"
+                  data-src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Retained structure and light tuned into a gallery-grade working environment."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&q=80"
+                    alt="Gallery"
+                  />
+                  <span class="thumb-label">Gallery</span>
+                </button>
+                <button
+                  class="thumb plan"
+                  data-src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1400&q=80"
+                  data-caption="Plan stack showing the overlap of studio, exhibition, and residence."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80"
+                    alt="Plan"
+                  />
+                  <span class="thumb-label">Plan</span>
+                </button>
+              </div>
+              <div class="thumb-progress">
+                <div class="thumb-progress-bar"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-section reveal" id="project-3">
+          <div class="project-panel">
+            <div class="project-kicker">
+              <div class="project-index">Project 03</div>
+              <div class="project-chip">Coastal home / Concept</div>
+            </div>
+            <h3 class="project-title">Cliff House</h3>
+            <p class="project-desc">
+              A coastal house shaped by exposure, protection, and horizon views.
+              The architecture uses layered terraces, recessed openings, and
+              mineral finishes to create shelter while framing the sea as the
+              project’s primary interior surface.
+            </p>
+
+            <div class="fact-grid">
+              <div class="fact-card">
+                <span>Location</span><strong>Knokke, Belgium</strong>
+              </div>
+              <div class="fact-card">
+                <span>Status</span><strong>Concept phase</strong>
+              </div>
+              <div class="fact-card">
+                <span>Focus</span><strong>View framing & shelter</strong>
+              </div>
+            </div>
+
+            <div class="process-list">
+              <div class="process-step">
+                <div class="step-num">01</div>
+                <div>
+                  <strong>View mapping</strong>
+                  <p>
+                    Established the project around horizon axes, privacy
+                    protection, and prevailing wind conditions.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-num">02</div>
+                <div>
+                  <strong>Sectional massing</strong>
+                  <p>
+                    Used stepped massing and recessed façades to mediate scale
+                    and climate exposure.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-num">03</div>
+                <div>
+                  <strong>Material strategy</strong>
+                  <p>
+                    Paired mineral surfaces with warm timber interiors to keep
+                    the architecture tactile but quiet.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-card">
+                <h4>Description</h4>
+                <p>
+                  This project is about subtraction and framing: what is hidden
+                  matters as much as what is revealed.
+                </p>
+              </div>
+              <div class="detail-card">
+                <h4>Plans</h4>
+                <p>
+                  The carousel combines renders, sectional studies, and material
+                  references into a compact presentation system.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-media" data-project>
+            <div class="feature-frame">
+              <img
+                class="feature-image"
+                src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80"
+                alt="Cliff House feature"
+              />
+              <div class="feature-overlay">
+                <div class="feature-caption">
+                  Layered coastal massing shaped around horizon views and
+                  protection.
+                </div>
+                <div class="feature-counter">01 / 05</div>
+              </div>
+            </div>
+
+            <div class="media-nav">
+              <div class="media-controls">
+                <button
+                  class="control-btn mobile-hide prev"
+                  aria-label="Previous media"
+                >
+                  ‹
+                </button>
+                <button
+                  class="control-btn mobile-hide next"
+                  aria-label="Next media"
+                >
+                  ›
+                </button>
+              </div>
+              <div class="thumb-row">
+                <button
+                  class="thumb active"
+                  data-src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Layered coastal massing shaped around horizon views and protection."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80"
+                    alt="Exterior"
+                  />
+                  <span class="thumb-label">Exterior</span>
+                </button>
+                <button
+                  class="thumb"
+                  data-src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Interior volumes designed to keep the horizon legible from every shared space."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80"
+                    alt="Interior"
+                  />
+                  <span class="thumb-label">Interior</span>
+                </button>
+                <button
+                  class="thumb plan"
+                  data-src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1400&q=80"
+                  data-caption="Section studies showing stepped protection against wind and exposure."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&q=80"
+                    alt="Section"
+                  />
+                  <span class="thumb-label">Section</span>
+                </button>
+                <button
+                  class="thumb"
+                  data-src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Material palette combining pale stone, washed plaster, and timber warmth."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80"
+                    alt="Materials"
+                  />
+                  <span class="thumb-label">Material</span>
+                </button>
+                <button
+                  class="thumb plan"
+                  data-src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1400&q=80"
+                  data-caption="Plan sequence emphasizing sheltered terraces and framed open views."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80"
+                    alt="Plan"
+                  />
+                  <span class="thumb-label">Plan</span>
+                </button>
+              </div>
+              <div class="thumb-progress">
+                <div class="thumb-progress-bar"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-section reveal" id="project-4">
+          <div class="project-panel">
+            <div class="project-kicker">
+              <div class="project-index">Project 04</div>
+              <div class="project-chip">Interiors / Completed</div>
+            </div>
+            <h3 class="project-title">Gallery House</h3>
+            <p class="project-desc">
+              An interior architecture project developed around procession,
+              display, and joinery precision. The rooms are simplified into a
+              gallery-like sequence where light, shadow, and carefully edited
+              materials carry most of the expression.
+            </p>
+
+            <div class="fact-grid">
+              <div class="fact-card">
+                <span>Location</span><strong>Brussels, Belgium</strong>
+              </div>
+              <div class="fact-card">
+                <span>Status</span><strong>Completed</strong>
+              </div>
+              <div class="fact-card">
+                <span>Focus</span><strong>Joinery & display</strong>
+              </div>
+            </div>
+
+            <div class="process-list">
+              <div class="process-step">
+                <div class="step-num">01</div>
+                <div>
+                  <strong>Spatial editing</strong>
+                  <p>
+                    Reduced visual noise through stricter alignments, concealed
+                    storage, and more deliberate wall openings.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-num">02</div>
+                <div>
+                  <strong>Joinery development</strong>
+                  <p>
+                    Designed integrated cabinetry and display surfaces as part
+                    of the architecture rather than furniture afterthoughts.
+                  </p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-num">03</div>
+                <div>
+                  <strong>Atmosphere tuning</strong>
+                  <p>
+                    Used warmer tones selectively to keep the overall experience
+                    quiet, bright, and highly intentional.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="detail-card">
+                <h4>Description</h4>
+                <p>
+                  The interior is treated like a sequence of framed moments
+                  rather than a set of decorated rooms.
+                </p>
+              </div>
+              <div class="detail-card">
+                <h4>Plans</h4>
+                <p>
+                  The carousel includes photography, layout references, joinery
+                  logic, and tonal material studies.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-media" data-project>
+            <div class="feature-frame">
+              <img
+                class="feature-image"
+                src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80"
+                alt="Gallery House feature"
+              />
+              <div class="feature-overlay">
+                <div class="feature-caption">
+                  Interior architecture built around procession, light, and
+                  gallery-like restraint.
+                </div>
+                <div class="feature-counter">01 / 05</div>
+              </div>
+            </div>
+
+            <div class="media-nav">
+              <div class="media-controls">
+                <button
+                  class="control-btn mobile-hide prev"
+                  aria-label="Previous media"
+                >
+                  ‹
+                </button>
+                <button
+                  class="control-btn mobile-hide next"
+                  aria-label="Next media"
+                >
+                  ›
+                </button>
+              </div>
+              <div class="thumb-row">
+                <button
+                  class="thumb active"
+                  data-src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Interior architecture built around procession, light, and gallery-like restraint."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80"
+                    alt="Interior"
+                  />
+                  <span class="thumb-label">Interior</span>
+                </button>
+                <button
+                  class="thumb"
+                  data-src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Material studies balancing white surfaces, oak warmth, and tactile stone."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80"
+                    alt="Materials"
+                  />
+                  <span class="thumb-label">Material</span>
+                </button>
+                <button
+                  class="thumb plan"
+                  data-src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1400&q=80"
+                  data-caption="Layout strategy and display sequence across the main interior zones."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80"
+                    alt="Layout"
+                  />
+                  <span class="thumb-label">Layout</span>
+                </button>
+                <button
+                  class="thumb"
+                  data-src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+                  data-caption="Living zone with integrated joinery and cleaner sightlines."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80"
+                    alt="Living zone"
+                  />
+                  <span class="thumb-label">Living</span>
+                </button>
+                <button
+                  class="thumb plan"
+                  data-src="https://images.unsplash.com/photo-1431578500526-4d9613015464?auto=format&fit=crop&w=1400&q=80"
+                  data-caption="Joinery and display logic diagram for a more coherent interior rhythm."
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1431578500526-4d9613015464?auto=format&fit=crop&w=900&q=80"
+                    alt="Diagram"
+                  />
+                  <span class="thumb-label">Diagram</span>
+                </button>
+              </div>
+              <div class="thumb-progress">
+                <div class="thumb-progress-bar"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="shell" id="studio">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Studio</div>
+            <h2>Color only where it helps comprehension.</h2>
+          </div>
+          <p>
+            White is the primary field, black carries the structure, and accent
+            colors are used only as functional guidance: progress, chips, subtle
+            emphasis, and navigation cues. That keeps the portfolio crisp
+            instead of decorative.
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer shell" id="contact">
+        <div class="footer-panel reveal">
+          <div>
+            <div class="eyebrow">Contact</div>
+            <h3>Designed to be scanned fast and explored deeply.</h3>
+          </div>
+          <ul>
+            <li>Bird’s-eye project browser at the top</li>
+            <li>In-depth case studies in the same scrollable page</li>
+            <li>Clickable carousels with stronger transitions</li>
+            <li>Clear navigation that stays easy, like Apple</li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      const revealItems = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.14 }
+      );
+      revealItems.forEach((item) => revealObserver.observe(item));
+
+      const navLinks = document.querySelectorAll(".nav-links a");
+      const sections = Array.from(
+        document.querySelectorAll("#overview, #project-1, #studio, #contact")
+      );
+      const navObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navLinks.forEach((link) =>
+                link.classList.toggle(
+                  "active",
+                  link.getAttribute("href") === "#" + entry.target.id
+                )
+              );
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      sections.forEach((section) => navObserver.observe(section));
+
+      const overviewTrack = document.getElementById("overviewTrack");
+      const overviewProgress = document.getElementById("overviewProgress");
+      document.getElementById("overviewPrev").addEventListener("click", () => {
+        overviewTrack.scrollBy({ left: -420, behavior: "smooth" });
+      });
+      document.getElementById("overviewNext").addEventListener("click", () => {
+        overviewTrack.scrollBy({ left: 420, behavior: "smooth" });
+      });
+
+      function updateOverviewProgress() {
+        const max = overviewTrack.scrollWidth - overviewTrack.clientWidth;
+        const ratio = max <= 0 ? 1 : overviewTrack.scrollLeft / max;
+        overviewProgress.style.width = `${25 + ratio * 75}%`;
+      }
+      overviewTrack.addEventListener("scroll", updateOverviewProgress, {
+        passive: true,
+      });
+      window.addEventListener("load", updateOverviewProgress);
+      window.addEventListener("resize", updateOverviewProgress);
+
+      document.querySelectorAll("[data-project]").forEach((project) => {
+        const featureImage = project.querySelector(".feature-image");
+        const caption = project.querySelector(".feature-caption");
+        const counter = project.querySelector(".feature-counter");
+        const thumbs = Array.from(project.querySelectorAll(".thumb"));
+        const row = project.querySelector(".thumb-row");
+        const progress = project.querySelector(".thumb-progress-bar");
+        const prev = project.querySelector(".prev");
+        const next = project.querySelector(".next");
+        let activeIndex = 0;
+
+        function activate(index) {
+          activeIndex = index;
+          const thumb = thumbs[index];
+          thumbs.forEach((t, i) => t.classList.toggle("active", i === index));
+
+          featureImage.animate(
+            [
+              { opacity: 0.3, transform: "scale(1.025)" },
+              { opacity: 1, transform: "scale(1)" },
+            ],
+            { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" }
+          );
+
+          caption.animate(
+            [
+              { opacity: 0, transform: "translateY(10px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 380, easing: "ease-out" }
+          );
+
+          counter.animate(
+            [
+              { opacity: 0, transform: "translateY(8px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 340, easing: "ease-out" }
+          );
+
+          featureImage.src = thumb.dataset.src;
+          caption.textContent = thumb.dataset.caption;
+          counter.textContent = `${String(index + 1).padStart(
+            2,
+            "0"
+          )} / ${String(thumbs.length).padStart(2, "0")}`;
+          progress.style.width = `${((index + 1) / thumbs.length) * 100}%`;
+          thumb.scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest",
+          });
+        }
+
+        thumbs.forEach((thumb, index) => {
+          thumb.addEventListener("click", () => activate(index));
+        });
+
+        prev?.addEventListener("click", () =>
+          activate((activeIndex - 1 + thumbs.length) % thumbs.length)
+        );
+        next?.addEventListener("click", () =>
+          activate((activeIndex + 1) % thumbs.length)
+        );
+
+        activate(0);
+      });
+    </script>
+  </body>
+</html>
