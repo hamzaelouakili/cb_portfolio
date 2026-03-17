@@ -1892,6 +1892,18 @@
     </main>
 
     <script>
+      window.history.scrollRestoration = "manual";
+
+      window.addEventListener("load", () => {
+        window.scrollTo(0, 0);
+      });
+
+      window.history.scrollRestoration = "manual";
+
+      window.addEventListener("load", () => {
+        window.scrollTo(0, 0);
+      });
+
       const revealItems = document.querySelectorAll(".reveal");
       const revealObserver = new IntersectionObserver(
         (entries) => {
